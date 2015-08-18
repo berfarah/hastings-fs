@@ -1,26 +1,37 @@
-describe Hastings::Dir, ftp: true do
+describe Hastings::Dir do
   subject(:foo_bar) { described_class.new("foo_bar") }
-  let(:path) { -> (arr) { arr.map(&:path) } }
+  let(:path) do
+    -> (arr) { arr.map(&:path) }
+  end
+  let(:files_arr) do
+    Dir.chdir("foo_bar") { @files.map(&Hastings::File.method(:new)) }
+  end
+  let(:dirs_arr) do
+    Dir.chdir("foo_bar") { @dirs.map(&Hastings::Dir.method(:new)) }
+  end
+
   before(:all) do
     FileUtils.mkdir_p("foo_bar")
     @files = %w(bazinga caramba yahoo)
     @files.each { |f| File.open("foo_bar/#{f}", "w") {} }
-
     @dirs = %w(bossa jazz rock)
     @dirs.map { |d| Dir.mkdir("foo_bar/#{d}") }
   end
   after(:all)  { FileUtils.rm_rf("foo_bar") }
 
-  subject(:files_arr) do
-    Dir.chdir("foo_bar") { @files.map(&Hastings::File.method(:new)) }
-  end
+  it { is_expected.to be_a Dir }
+  it { is_expected.to be_a Hastings::FS::AbsolutePaths }
+  it { is_expected.to be_a Hastings::FS::Path }
+  it { is_expected.to be_a Hastings::FS::Stat }
 
-  subject(:dirs_arr) do
-    Dir.chdir("foo_bar") { @dirs.map(&Hastings::Dir.method(:new)) }
-  end
-
-  it "inherits from Dir" do
-    expect(foo_bar).to be_a Dir
+  [:created, :accessed, :modified].each do |name|
+    describe "##{name[0]}time" do
+      it "should have been #{name} at the time of running tests" do
+        expect(
+          subject.public_send(:"#{name[0]}time").send :to_date
+        ).to eq(Date.today)
+      end
+    end
   end
 
   describe "#files" do

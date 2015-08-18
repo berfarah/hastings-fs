@@ -27,6 +27,9 @@ module Hastings
         alias_method :rename, :move
       end
 
+      # Bring in the methods when included. We split up the methods this way
+      # so that the module can work as a standalone as well.
+      # @param base [Class]
       def self.included(base)
         base.include(Methods)
       end
