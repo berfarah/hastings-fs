@@ -7,6 +7,7 @@ module Hastings
     include Hastings::FS::AbsolutePaths
     include Hastings::FS::Path
     include Hastings::FS::Stat
+    include Hastings::FS::Utils
 
     # @return [Fixnum] amount of lines in the file
     def lines

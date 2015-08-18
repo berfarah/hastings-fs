@@ -1,5 +1,3 @@
-require "hastings/file"
-
 describe Hastings::File do
   subject { described_class.new("foo") }
   before(:all) { File.write("foo", "example text\n") }

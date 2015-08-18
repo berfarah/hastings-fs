@@ -1,5 +1,3 @@
-require "hastings/dir"
-
 describe Hastings::Dir, ftp: true do
   subject(:foo_bar) { described_class.new("foo_bar") }
   let(:path) { -> (arr) { arr.map(&:path) } }

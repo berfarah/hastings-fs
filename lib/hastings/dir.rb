@@ -1,5 +1,4 @@
 require "hastings/fs"
-require "hastings/file"
 
 module Hastings
   # {Dir} is an extension of {::Dir} with additional user-friendly methods
@@ -8,6 +7,7 @@ module Hastings
     include Hastings::FS::AbsolutePaths
     include Hastings::FS::Path
     include Hastings::FS::Stat
+    include Hastings::FS::Utils
 
     # @!group Stat methods
 

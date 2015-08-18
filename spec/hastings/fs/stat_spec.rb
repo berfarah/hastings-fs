@@ -1,4 +1,4 @@
-require "hastings/core/date_range"
+require "hastings/core/date_time_range"
 
 describe Hastings::FS::Stat do
   subject { Class.new(File) { include Hastings::FS::Stat }.new("foo") }
@@ -33,12 +33,12 @@ describe Hastings::FS::Stat do
       subject { super().public_send :"#{name}_between?", range }
 
       describe "when it's in the range" do
-        let(:range) { Hastings::DateRange.new Date.today - 5, Date.today }
+        let(:range) { Hastings::DateTimeRange.new Date.today - 5, Date.today }
         it { is_expected.to be true }
       end
 
       describe "when it's not in the range" do
-        let(:range) { Hastings::DateRange.new Date.today + 5, Date.today + 20 }
+        let(:range) { Hastings::DateTimeRange.new Date.today + 5, Date.today + 20 }
         it { is_expected.to be false }
       end
     end
