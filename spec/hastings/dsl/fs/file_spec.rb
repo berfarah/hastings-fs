@@ -1,5 +1,5 @@
-describe Hastings::Dsl::File do
-  subject { Class.new { extend Hastings::Dsl::File } }
+describe Hastings::Dsl::FS::File do
+  subject { Class.new { extend Hastings::Dsl::FS::File } }
   before  { FileUtils.touch("foo") }
   after   { FileUtils.rm("foo") }
 

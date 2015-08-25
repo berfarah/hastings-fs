@@ -1,5 +1,5 @@
-describe Hastings::Dsl::Utils do
-  subject { Class.new { extend Hastings::Dsl::Utils } }
+describe Hastings::Dsl::FS::Utils do
+  subject { Class.new { extend Hastings::Dsl::FS::Utils } }
   before(:all) do
     @files = %w(foo bar)
     @dirs  = %w(baz oof)

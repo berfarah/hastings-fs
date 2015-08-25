@@ -1,4 +1,7 @@
-require "hastings/fs"
+require "hastings/fs/absolute_paths"
+require "hastings/fs/path"
+require "hastings/fs/stat"
+require "hastings/fs/utils"
 
 module Hastings
   # {Dir} is an extension of {::Dir} with additional user-friendly methods

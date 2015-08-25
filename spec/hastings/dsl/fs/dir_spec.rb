@@ -1,5 +1,5 @@
-describe Hastings::Dsl::Dir do
-  subject { Class.new { extend Hastings::Dsl::Dir } }
+describe Hastings::Dsl::FS::Dir do
+  subject { Class.new { extend Hastings::Dsl::FS::Dir } }
   before  { FileUtils.mkdir("foo") }
   after   { FileUtils.rmdir("foo") }
 

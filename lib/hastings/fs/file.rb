@@ -1,4 +1,7 @@
-require "hastings/fs"
+require "hastings/fs/absolute_paths"
+require "hastings/fs/path"
+require "hastings/fs/stat"
+require "hastings/fs/utils"
 
 module Hastings
   # {File} is an extension of {::File} with additional user-friendly methods
